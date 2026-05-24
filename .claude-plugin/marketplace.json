@@ -1,0 +1,28 @@
+{
+  "$schema": "https://code.claude.com/schemas/marketplace.json",
+  "name": "alexfordlabs",
+  "description": "Public Claude Code plugin marketplace by Alex Ford Labs. A growing collection of design-first developer tooling: project-architect bootstraps any project type with research-augmented questioning, ADR-tracked decisions, parallel doc generation, and project-local Claude Code configuration; its companion reverse-engineer recovers a design from a foreign/brownfield project and hands it back to project-architect through a shared state contract.",
+  "owner": {
+    "name": "Alexander Ford",
+    "email": "alex@alexfordlabs.com",
+    "url": "https://github.com/alexfordlabs/skills"
+  },
+  "plugins": [
+    {
+      "name": "project-architect",
+      "source": {
+        "source": "github",
+        "repo": "alexfordlabs/project-architect"
+      },
+      "description": "Project architecture orchestrator. 11 phases, 6 specialized subagents, ADR-tracked decisions, parallel doc generation, design-first multi-session lifecycle (4 plan docs + Phase 7 execution + Phase 8 router-style handoff), 27-check post-Phase-4 quality-gate auditor, tamper-evident schema-3.0 state ledger (bin/architect-ledger), a Preflight situation-router that detects and resumes an old-version or interrupted project (or starts fresh seeded from the recovered design), self-healing informational error handling, cross-version /upgrade-project (preserve-mode) + /re-architect (recover → triage → research → re-decide → re-derive) flows, inline shell/JSON validators, per-agent runtime budgets, per-phase memory persistence, cross-language CLI-UX picker (Rust/Go/Python/Node/Ruby/C#), per-folder CLAUDE.md router, and 3 router slash commands (/scaffold, /implement, /iterate-design). Supports web apps, mobile, CLI, libraries, APIs, multi-platform, desktop, browser extensions, games, AI/ML, data pipelines, embedded, infrastructure, Claude Code plugins, MCP servers, Web3, scientific code, AR/VR, programming language design (general-purpose, DSL, query, config, educational, transpiler target — 7 dedicated PL templates covering grammar, semantics, type system, stdlib, toolchain, bootstrap plan, stability/RFC), and more."
+    },
+    {
+      "name": "reverse-engineer",
+      "source": {
+        "source": "github",
+        "repo": "alexfordlabs/reverse-engineer"
+      },
+      "description": "Brownfield design-recovery orchestrator — the companion to project-architect, pointed the other way. Take a foreign project (arbitrary code, docs, notes, half-finished folder trees — anything with no project-architect history) and reverse-engineer its design: detect what kind of artifact it is → understand it (file/dependency inventory, dependency map, live current-version research on every framework it actually uses, and inferred requirements read back out of the code) → recover the design into a reviewable RECOVERED_DESIGN.md → triage every recovered decision (keep / revise / drop, low-confidence-first, human-validated) → emit a flat, re-derivable decisions keyspace + a schema-3.1 origin:\"reverse-engineered\" state → hand off to project-architect via the shared state contract (its output rides project-architect's seeded-greenfield / import-decisions path, so you continue bootstrapping with the recovered design already in hand). The differentiator is never-stale grounding: it resolves the newest-stable version of each detected dependency live at recovery time rather than recalling from training. Bidirectionally interoperable with project-architect."
+    }
+  ]
+}
