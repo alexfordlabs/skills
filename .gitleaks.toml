@@ -1,0 +1,45 @@
+# gitleaks config for the alexfordlabs/skills repo (PUBLIC Claude Code plugin marketplace).
+# Extends the built-in default ruleset (~100 secret-detection rules) with the
+# workspace-canonical identity-correlation rules. This repo is PUBLIC and must NOT
+# contain strings linking the Alex Ford Labs brand to Vladimir's real identity.
+
+title = "alexfordlabs/skills (Alex Ford Labs) gitleaks config"
+
+[extend]
+useDefault = true
+
+# === Identity-correlation rules (per rule_precommit_secret_scan_per_repo) ===
+
+[[rules]]
+id = "identity-correlation-vladimir-dukelic"
+description = "Pseudonym→real-identity leak: 'vladimir-dukelic' / 'Vladimir Dukelic' / variants"
+regex = '''(?i)vladimir[-_\s]?dukelic'''
+tags = ["identity-correlation", "alexfordlabs"]
+
+[[rules]]
+id = "identity-correlation-vladimir-emails"
+description = "Vladimir-attributable emails (dukelic.com, pseudo-lang.com, siliconyouth.com)"
+regex = '''(?i)vladimir@(dukelic|pseudo-lang|siliconyouth)\.[a-z]{2,8}'''
+tags = ["identity-correlation", "alexfordlabs"]
+
+[[rules]]
+id = "identity-correlation-silicon-youth"
+description = "Silicon Youth LLC / siliconyouth references — this repo is cleanly Alex Ford Labs"
+regex = '''(?i)silicon[-_\s]?youth'''
+tags = ["identity-correlation", "alexfordlabs"]
+
+[[rules]]
+id = "identity-correlation-pseudo-lang"
+description = "Vladimir's pre-existing brand pseudo-lang.com appearing in an alexfordlabs repo"
+regex = '''(?i)pseudo[-_]?lang\.(com|io|dev|app)'''
+tags = ["identity-correlation", "alexfordlabs"]
+
+[allowlist]
+description = "Paths exempt from all rules — the config files themselves + build noise"
+paths = [
+    '''(^|/)\.gitleaks\.toml$''',            # this file embeds the very patterns it detects
+    '''(^|/)\.pre-commit-config\.yaml$''',
+    '''\.bak\..*''',
+    '''(^|/)node_modules/''',
+    '''(^|/)dist/''',
+]

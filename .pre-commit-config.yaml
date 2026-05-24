@@ -1,0 +1,11 @@
+# pre-commit hooks for the alexfordlabs/skills repo.
+# Install once per local clone: `pre-commit install`
+# Then every `git commit` runs gitleaks against staged files.
+
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+        # Runs `gitleaks protect --staged`. Custom rules: see .gitleaks.toml
+        # (default ruleset + identity-correlation rules).
